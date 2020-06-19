@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block Content %}
+
+<div class="container">
+        <div class="row">
+                <div class="col-sm-6">
+                        <div class="jumbotron jumbotron-fluid bg-light" style="margin-top:100px">
+                                <div class="container">
+                                        {% if messages %}
+                                                {% for message in messages %}
+                                                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show mb-3" role="alert">
+                                                                <strong>Message : </strong> {{ message}}
+                                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                        </div>
+                                                {% endfor %}
+                                        {% endif %}
+                                        <form action="" method="POST">
+                                                {% csrf_token %}
+                                                <legend class="text-secondary font-italic">Get Images For Free</legend><hr />
+                                                <div class="form-group">
+                                                        <label for="ImageName"  class="text-secondary font-italic">Image Name</label>
+                                                        <input type="text" class="form-control" id="ImageName" name="imageName" placeholder="eg: nature, flowers" value="{{ stackimage }}">
+                                                </div>
+                                                <div class="form-group">
+                                                        <label for="height"  class="text-secondary font-italic">Height</label>
+                                                        <input type="text" class="form-control" id="height" name="height" placeholder="eg: 500" value="{{ height }}">
+                                                </div>
+                                                <div class="form-group">
+                                                        <label for="height"  class="text-secondary font-italic">Width</label>
+                                                        <input type="text" class="form-control" id="height" name="width" placeholder="eg: 300" value="{{ width }}">
+                                                </div>
+                                                <div class="form-group">
+                                                        <button type='submit' class="btn btn-danger" value="{{ NextImage }}">Next Images</button>
+                                                </div>
+                                                <div class="lead">
+                                                        <p>Your can Tap Next Images button to view New Images of That Categories</p>
+                                                </div>
+                                        </form>
+                                </div>
+                        </div>
+                </div>
+
+                <div class="col-sm-6">
+                        <div class="section" style="margin-top:200px">
+                                <img src="https://source.unsplash.com/{{ width }}x{{ height }}/?{{ stackimage }}" alt="{{ stackimage }}" height="300px" width="auto">
+                        </div>
+                </div>
+        </div>
+</div>
+
+{% endblock Content %}
